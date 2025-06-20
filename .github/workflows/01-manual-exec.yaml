@@ -1,4 +1,4 @@
-name: "Execução Manual - Testes JS"
+name: "Execução Manual "
 
 on:
   workflow_dispatch:
