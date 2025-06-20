@@ -1,11 +1,7 @@
 name: "Execução Manual - Testes JS"
 
-# 1) Declare quando este workflow deve ser reconhecido
 on:
-  workflow_dispatch: # para Run workflow manual
-  push: # opcional: roda automaticamente em push na main
-    branches:
-      - main
+  workflow_dispatch: # só manual
 
 jobs:
   unit-tests:
@@ -28,10 +24,11 @@ jobs:
         run: npm test
 
       - name: Publicar relatório no GitHub Checks
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v2
         with:
           name: Mocha Tests
           path: reports/junit/results.xml
+          reporter: java-junit
 
       - name: Upload do relatório JUnit XML
         uses: actions/upload-artifact@v4
