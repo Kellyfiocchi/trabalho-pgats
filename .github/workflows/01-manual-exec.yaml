@@ -34,7 +34,7 @@ jobs:
           path: reports/junit/results.xml
 
       - name: Upload do relatório JUnit XML
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: junit-report
           path: reports/junit/results.xml
