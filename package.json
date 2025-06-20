@@ -5,12 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha --exit \"test/**/*.js\""
+    "test": "mocha --exit \"test/**/*.js\" --reporter mocha-junit-reporter --reporter-options mochaFile=reports/junit/results.xml"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^11.4.0"
+    "mocha": "^11.4.0",
+    "mocha-junit-reporter": "^2.2.0"
   }
 }

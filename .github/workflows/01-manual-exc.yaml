@@ -1,7 +1,7 @@
+# .github/workflows/manual-test.yml
 name: "Execução Manual - Testes JS"
 
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   unit-tests:
@@ -20,5 +20,11 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Executar testes
+      - name: Executar testes e gerar JUnit XML
         run: npm test
+
+      - name: Publicar teste como relatório no GitHub
+        uses: dorny/test-reporter@v1
+        with:
+          name: Mocha Tests
+          path: reports/junit/results.xml
