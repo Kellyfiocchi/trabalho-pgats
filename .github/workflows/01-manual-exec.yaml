@@ -1,40 +1,38 @@
-name: "Execução Manual "
+name: "Execução Manual - Testes JS"
 
+# 1) Declare quando este workflow deve ser reconhecido
 on:
-  workflow_dispatch:
+  workflow_dispatch: # para Run workflow manual
+  push: # opcional: roda automaticamente em push na main
+    branches:
+      - main
 
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Puxa o código
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      # 2) Configura Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18.x"
           cache: "npm"
 
-      # 3) Instala dependências
       - name: Instalar dependências
         run: npm ci
 
-      # 4) Executa testes e gera o XML
       - name: Executar testes (gera JUnit XML)
         run: npm test
 
-      # 5) Publica sumário inline no Actions
       - name: Publicar relatório no GitHub Checks
         uses: dorny/test-reporter@v1
         with:
           name: Mocha Tests
           path: reports/junit/results.xml
 
-      # 6) Faz o upload do XML como artefato (para download)
       - name: Upload do relatório JUnit XML
         uses: actions/upload-artifact@v3
         with:
