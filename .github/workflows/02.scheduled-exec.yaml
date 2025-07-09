@@ -26,6 +26,9 @@ jobs:
       - name: Executar testes E2E
         run: npm test
 
+      - name: Verificar evidências geradas
+        run: ls -R reports/junit || echo "Diretório não encontrado"
+
       - name: Upload de evidências E2E (prints/logs/etc)
         uses: actions/upload-artifact@v4
         with:
