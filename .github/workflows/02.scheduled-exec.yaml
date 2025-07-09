@@ -4,7 +4,6 @@ name: "Execução Agendada - Testes E2E"
 on:
   schedule:
     - cron: "0 6 * * 1" # Segunda-feira às 06:00 UTC
-  workflow_dispatch: # Permite execução manual
 
 jobs:
   e2e-tests:
